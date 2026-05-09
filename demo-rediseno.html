@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo Rediseño — Obtén tu licencia</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;color:#1a2b4a}
+
+/* NAV */
+.nav{background:#1a2b4a;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,0.15)}
+.nav-logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;font-size:16px;text-decoration:none}
+.nav-logo-icon{width:36px;height:36px;background:#f5a623;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-link{color:rgba(255,255,255,0.7);font-size:14px;cursor:pointer;text-decoration:none;transition:color .2s}
+.nav-link:hover{color:#fff}
+.nav-link.active{color:#f5a623;font-weight:600}
+.nav-cta{background:#f5a623;color:#fff;font-size:14px;font-weight:700;padding:10px 22px;border-radius:99px;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.nav-cta:hover{background:#e09515;transform:translateY(-1px)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1a2b4a 0%,#243a62 60%,#1e3a5f 100%);padding:72px 40px 80px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1;max-width:1200px;margin:0 auto;width:100%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero-left{}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.4);color:#f5a623;font-size:12px;font-weight:600;padding:5px 14px;border-radius:99px;margin-bottom:24px}
+.hero-pill-dot{width:7px;height:7px;background:#f5a623;border-radius:50%;animation:pulse 2s infinite}
+.hero-title{color:#fff;font-size:44px;font-weight:900;line-height:1.15;margin-bottom:20px;letter-spacing:-.8px}
+.hero-title span{color:#f5a623}
+.hero-sub{color:rgba(255,255,255,0.65);font-size:16px;line-height:1.75;margin-bottom:32px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.btn-primary{background:#f5a623;color:#fff;font-size:15px;font-weight:700;padding:14px 28px;border-radius:99px;cursor:pointer;border:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn-primary:hover{background:#e09515;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,0.4)}
+.btn-ghost{background:rgba(255,255,255,0.1);color:#fff;font-size:15px;padding:14px 28px;border-radius:99px;cursor:pointer;border:1px solid rgba(255,255,255,0.25);transition:all .2s;text-decoration:none;display:inline-flex;align-items:center}
+.btn-ghost:hover{background:rgba(255,255,255,0.2)}
+.hero-stats{display:flex;gap:36px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.1)}
+.stat-num{color:#f5a623;font-size:28px;font-weight:900}
+.stat-lbl{color:rgba(255,255,255,0.5);font-size:12px;margin-top:3px}
+
+/* HERO RIGHT — plataforma mockup */
+.hero-right{display:flex;align-items:center;justify-content:center}
+.platform-mockup{width:100%;max-width:420px;animation:floatY 4s ease-in-out infinite}
+.pm-window{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:20px;backdrop-filter:blur(10px)}
+.pm-topbar{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.pm-dots{display:flex;gap:5px}
+.pm-dot{width:9px;height:9px;border-radius:50%}
+.pm-title{font-size:12px;color:rgba(255,255,255,0.6);font-weight:600;margin-left:4px}
+.pm-badge{margin-left:auto;background:rgba(34,197,94,0.2);color:#4ade80;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;border:1px solid rgba(34,197,94,0.3)}
+.pm-progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.pm-progress-label{font-size:11px;color:rgba(255,255,255,0.5)}
+.pm-progress-val{font-size:11px;color:#f5a623;font-weight:700}
+.pm-progress-bar{height:5px;background:rgba(255,255,255,0.1);border-radius:99px;margin-bottom:18px;overflow:hidden}
+.pm-progress-fill{height:100%;background:linear-gradient(90deg,#f5a623,#fbbf24);border-radius:99px;width:62%}
+.pm-question-num{font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.pm-question{font-size:13px;color:#fff;font-weight:600;line-height:1.5;margin-bottom:16px}
+.pm-option{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;margin-bottom:8px;cursor:pointer;transition:all .2s;font-size:12px;color:rgba(255,255,255,0.8)}
+.pm-option.correct{background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.4);color:#4ade80}
+.pm-option.wrong{background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.3);color:rgba(255,255,255,0.5)}
+.pm-option.neutral{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08);color:rgba(255,255,255,0.65)}
+.pm-opt-letter{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
+.pm-opt-letter.c{background:rgba(34,197,94,0.25);color:#4ade80}
+.pm-opt-letter.w{background:rgba(239,68,68,0.2);color:rgba(239,68,68,0.7)}
+.pm-opt-letter.n{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.5)}
+.pm-explain{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:10px;padding:10px 14px;margin-top:12px;display:flex;gap:8px;align-items:flex-start}
+.pm-explain-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.pm-explain-text{font-size:11px;color:rgba(255,255,255,0.55);line-height:1.5}
+
+/* Floating badges sobre el mockup */
+.hero-right-wrap{position:relative}
+.float-badge{position:absolute;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,0.2);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#1a2b4a;white-space:nowrap}
+.float-badge-1{top:-12px;right:-12px;animation:floatY 3.5s ease-in-out infinite}
+.float-badge-2{bottom:20px;left:-20px;animation:floatY 4.5s ease-in-out infinite 1s}
+.float-badge-icon{font-size:18px}
+
+/* TRUST BAR */
+.trust-bar{background:#fff;padding:16px 40px;display:flex;align-items:center;justify-content:center;gap:40px;border-bottom:1px solid #e5eaf2;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#5a6a85;font-weight:500}
+
+/* SECTIONS */
+.section{padding:64px 40px}
+.section-label{font-size:12px;font-weight:700;color:#f5a623;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
+.section-title{font-size:34px;font-weight:900;color:#1a2b4a;margin-bottom:10px;letter-spacing:-.5px}
+.section-sub{font-size:15px;color:#5a6a85;line-height:1.7;margin-bottom:40px;max-width:600px}
+
+/* PRODUCT CARDS */
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:768px){.product-grid{grid-template-columns:1fr}}
+.product-card{background:#fff;border-radius:20px;overflow:hidden;border:1px solid #e5eaf2;transition:all .3s;cursor:pointer;text-decoration:none;display:block;color:inherit}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(26,43,74,0.14)}
+/* Cabecera de tarjeta profesional */
+.pc-header{padding:24px 24px 20px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid #f0f4f8}
+.pc-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pc-icon-wrap.b{background:#e8f0fe}
+.pc-icon-wrap.c{background:#fef3e2}
+.pc-icon-wrap.a{background:#e6faf2}
+.pc-tag{font-size:10px;font-weight:700;padding:4px 10px;border-radius:99px}
+.tag-b{background:#e8f0fe;color:#1a56db}
+.tag-c{background:#fef3e2;color:#b45309}
+.tag-a{background:#e6faf2;color:#065f46}
+/* Stats rápidas */
+.pc-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid #f0f4f8}
+.pc-stat{padding:12px 16px;text-align:center;border-right:1px solid #f0f4f8}
+.pc-stat:last-child{border-right:none}
+.pc-stat-val{font-size:15px;font-weight:800;color:#1a2b4a}
+.pc-stat-lbl{font-size:10px;color:#94a3b8;margin-top:1px}
+/* Barra de dificultad */
+.pc-body{padding:20px 24px 24px}
+.product-card-name{font-size:17px;font-weight:800;color:#1a2b4a;margin-bottom:6px}
+.product-card-desc{font-size:13px;color:#5a6a85;line-height:1.65;margin-bottom:18px}
+.pc-diff-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.pc-diff-label{font-size:11px;color:#94a3b8;font-weight:600}
+.pc-diff-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:99px}
+.pc-bar{height:4px;background:#f0f4f8;border-radius:99px;overflow:hidden;margin-bottom:18px}
+.pc-fill{height:100%;border-radius:99px}
+.product-card-meta{display:flex;align-items:center;justify-content:space-between}
+.product-card-free{font-size:12px;font-weight:600;color:#059669;display:flex;align-items:center;gap:4px}
+.product-card-btn{background:#1a2b4a;color:#fff;font-size:13px;font-weight:700;padding:9px 20px;border-radius:99px;cursor:pointer;border:none;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.product-card-btn:hover{background:#243a62;transform:translateY(-1px)}
+
+/* PRICING */
+.pricing-section{background:#1a2b4a;padding:64px 40px}
+.pricing-section .section-title{color:#fff}
+.pricing-section .section-sub{color:rgba(255,255,255,0.6)}
+.pricing-toggle{display:flex;background:rgba(255,255,255,0.08);border-radius:99px;padding:4px;width:fit-content;margin-bottom:40px;gap:2px}
+.pricing-tab{padding:9px 22px;border-radius:99px;font-size:13px;font-weight:600;cursor:pointer;color:rgba(255,255,255,0.55);transition:all .25s;border:none;background:transparent}
+.pricing-tab.active{background:#f5a623;color:#fff}
+.pricing-tab:hover:not(.active){color:#fff}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px}
+@media(max-width:768px){.pricing-grid{grid-template-columns:1fr}}
+.plan-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:28px;position:relative;transition:all .25s}
+.plan-card.featured{background:#fff;border:2px solid #f5a623}
+.plan-card.featured .plan-name,.plan-card.featured .plan-period{color:#5a6a85}
+.plan-card.featured .plan-price{color:#1a2b4a}
+.plan-card.featured .plan-feature{color:#374151}
+.plan-card.featured .plan-divider{background:#e5eaf2}
+.plan-featured-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#f5a623;color:#fff;font-size:11px;font-weight:700;padding:4px 16px;border-radius:99px;white-space:nowrap}
+.plan-name{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:6px;font-weight:600}
+.plan-price{font-size:38px;font-weight:900;color:#fff;line-height:1}
+.plan-period{font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;margin-bottom:20px}
+.plan-divider{height:1px;background:rgba(255,255,255,0.08);margin:20px 0}
+.plan-feature{font-size:13px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;line-height:1.5}
+.plan-check{color:#22c55e;font-weight:900;flex-shrink:0;font-size:14px}
+.plan-btn{display:block;text-align:center;font-size:14px;font-weight:700;padding:13px;border-radius:99px;margin-top:24px;cursor:pointer;border:none;transition:all .2s;width:100%;text-decoration:none}
+.plan-btn-primary{background:#f5a623;color:#fff}
+.plan-btn-primary:hover{background:#e09515;transform:translateY(-1px)}
+.plan-btn-ghost{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.2)}
+.plan-btn-ghost:hover{background:rgba(255,255,255,0.16)}
+.plan-guarantee{text-align:center;margin-top:24px;font-size:12px;color:rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;gap:6px}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:768px){.testi-grid{grid-template-columns:1fr}}
+.testi-card{background:#fff;border-radius:20px;padding:24px;border:1px solid #e5eaf2;transition:transform .2s}
+.testi-card:hover{transform:translateY(-3px)}
+.testi-stars{color:#f5a623;font-size:15px;margin-bottom:12px;letter-spacing:2px}
+.testi-text{font-size:14px;color:#374151;line-height:1.75;margin-bottom:20px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff;flex-shrink:0}
+.testi-info-name{font-size:14px;font-weight:700;color:#1a2b4a}
+.testi-info-class{font-size:12px;color:#5a6a85;margin-top:2px}
+
+/* FAQ */
+.faq-section{background:#f7f9fc;padding:64px 40px}
+.faq-item{background:#fff;border-radius:14px;border:1px solid #e5eaf2;margin-bottom:10px;overflow:hidden;cursor:pointer;transition:box-shadow .2s}
+.faq-item:hover{box-shadow:0 4px 16px rgba(26,43,74,0.08)}
+.faq-header{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;font-size:15px;font-weight:700;color:#1a2b4a;user-select:none}
+.faq-chevron{font-size:18px;color:#5a6a85;transition:transform .3s}
+.faq-chevron.open{transform:rotate(180deg)}
+.faq-body{padding:0 24px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s}
+.faq-body.open{max-height:300px;padding:0 24px 20px}
+.faq-body p{font-size:14px;color:#5a6a85;line-height:1.8}
+
+/* BLOG TEASER */
+.blog-section{background:#fff;padding:64px 40px}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+@media(max-width:768px){.blog-grid{grid-template-columns:1fr}}
+.blog-card{border-radius:16px;overflow:hidden;border:1px solid #e5eaf2;transition:transform .25s,box-shadow .25s;cursor:pointer;text-decoration:none;display:block;color:inherit}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,43,74,0.1)}
+.blog-card-img{height:130px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.blog-card-body{padding:18px}
+.blog-card-cat{font-size:10px;font-weight:700;color:#f5a623;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.blog-card-title{font-size:14px;font-weight:700;color:#1a2b4a;line-height:1.4;margin-bottom:8px}
+.blog-card-desc{font-size:12px;color:#5a6a85;line-height:1.6}
+
+/* FOOTER */
+.footer{background:#111e35;padding:56px 40px 0}
+.footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.07)}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
+.footer-brand-name{color:#fff;font-weight:800;font-size:16px;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-brand-icon{width:32px;height:32px;background:#f5a623;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.footer-brand-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.75;margin-bottom:20px}
+.footer-socials{display:flex;gap:8px}
+.footer-social{width:32px;height:32px;background:rgba(255,255,255,0.07);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;transition:background .2s;color:rgba(255,255,255,0.6);border:none}
+.footer-social:hover{background:rgba(255,255,255,0.15);color:#fff}
+.footer-col-title{color:rgba(255,255,255,0.85);font-size:12px;font-weight:800;margin-bottom:16px;text-transform:uppercase;letter-spacing:.08em}
+.footer-link{color:rgba(255,255,255,0.4);font-size:13px;display:block;margin-bottom:10px;cursor:pointer;transition:color .2s;text-decoration:none}
+.footer-link:hover{color:rgba(255,255,255,0.9)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:12px;color:rgba(255,255,255,0.28);flex-wrap:wrap;gap:10px}
+.footer-bottom-right{display:flex;gap:20px}
+.footer-bottom-link{color:rgba(255,255,255,0.28);cursor:pointer;transition:color .2s;text-decoration:none}
+.footer-bottom-link:hover{color:rgba(255,255,255,0.7)}
+
+/* WHATSAPP */
+.wa-float{position:fixed;bottom:28px;right:28px;background:#25d366;color:#fff;font-size:14px;font-weight:700;padding:14px 22px;border-radius:99px;display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 6px 24px rgba(37,211,102,0.45);z-index:999;transition:all .25s;border:none;text-decoration:none}
+.wa-float:hover{background:#20bd5a;transform:translateY(-3px);box-shadow:0 10px 32px rgba(37,211,102,0.5)}
+.wa-pulse{width:9px;height:9px;background:#fff;border-radius:50%;animation:pulse 1.8s infinite}
+
+/* HERO SOCIAL PROOF */
+.hero-social-proof{font-size:13px;color:rgba(255,255,255,0.5);margin-top:14px;display:flex;align-items:center;gap:6px}
+
+/* PRODUCT CARD FEATURED BADGE */
+.product-card{position:relative}
+.pc-featured-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#f5a623;color:#fff;font-size:11px;font-weight:700;padding:4px 16px;border-radius:99px;white-space:nowrap;pointer-events:none;z-index:1}
+.product-card-btn-featured{background:#f5a623}
+.product-card-btn-featured:hover{background:#e09515}
+
+/* CARD HOVER TEMATICO */
+.product-card.card-b:hover{border-color:#3b82f6;box-shadow:0 16px 48px rgba(59,130,246,0.14);transform:translateY(-6px)}
+.product-card.card-c:hover{border-color:#f59e0b;box-shadow:0 16px 48px rgba(245,158,11,0.14);transform:translateY(-6px)}
+.product-card.card-a:hover{border-color:#059669;box-shadow:0 16px 48px rgba(5,150,105,0.14);transform:translateY(-6px)}
+
+/* NAV HAMBURGER */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;margin-left:12px}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;width:100%;background:#1a2b4a;padding:16px 24px;gap:4px;z-index:99;border-top:1px solid rgba(255,255,255,0.08)}
+  .nav-links.open{display:flex}
+  .nav-link{padding:10px 0;font-size:15px;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .nav-hamburger{display:flex}
+  .nav-cta{font-size:13px;padding:8px 16px}
+  .hero{padding:48px 20px 56px}
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .hero-title{font-size:30px}
+  .hero-stats{gap:20px;flex-wrap:wrap}
+  .float-badge{display:none}
+  .trust-bar{gap:16px;padding:14px 20px}
+  .section{padding:48px 20px}
+  .faq-section{padding:48px 20px}
+  .blog-section{padding:48px 20px}
+  .pricing-section{padding:48px 20px}
+  .footer{padding:40px 20px 0}
+  .product-grid,.pricing-grid,.testi-grid,.blog-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero-right-wrap{display:none}
+  .hero-title{font-size:26px}
+  .hero-sub{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="https://obtentulicencia.cl/" target="_blank">
+    <div class="nav-logo-icon">🚗</div>
+    Obtén tu licencia
+  </a>
+  <div class="nav-links">
+    <a class="nav-link active" href="#inicio">Inicio</a>
+    <a class="nav-link" href="#examenes">Exámenes</a>
+    <a class="nav-link" href="#precios">Precios</a>
+    <a class="nav-link" href="#testimonios">Opiniones</a>
+    <a class="nav-link" href="#faq">FAQ</a>
+    <a class="nav-link" href="#contacto">Contacto</a>
+  </div>
+  <a class="nav-cta" href="https://obtentulicencia.cl/test-clase-b/" target="_blank">Examen gratis →</a>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-grid">
+
+    <!-- IZQUIERDA: texto -->
+    <div class="hero-left">
+      <div class="hero-pill">
+        <div class="hero-pill-dot"></div>
+        Actualizado al examen municipal 2025
+      </div>
+      <h1 class="hero-title">Aprueba tu licencia<br>de conducir<br><span>al primer intento</span></h1>
+      <p class="hero-sub">+1.500 preguntas reales de exámenes municipales chilenos. Simulacros ilimitados, explicación de errores y audiolibro incluido en el plan premium.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="https://obtentulicencia.cl/test-clase-b/" target="_blank">🎯 Practica gratis ahora</a>
+        <a class="btn-ghost" href="#precios">Ver planes →</a>
+      </div>
+      <p class="hero-social-proof">⭐ +4.800 estudiantes aprobaron usando esta plataforma</p>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num" id="counter1">+0</div>
+          <div class="stat-lbl">alumnos aprobados</div>
+        </div>
+        <div>
+          <div class="stat-num">+1.500</div>
+          <div class="stat-lbl">preguntas activas</div>
+        </div>
+        <div>
+          <div class="stat-num" id="counter2">0%</div>
+          <div class="stat-lbl">tasa de aprobación</div>
+        </div>
+        <div>
+          <div class="stat-num">24/7</div>
+          <div class="stat-lbl">disponible</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DERECHA: mockup de la plataforma -->
+    <div class="hero-right">
+      <div class="hero-right-wrap">
+        <!-- Badge flotante superior -->
+        <div class="float-badge float-badge-1">
+          <span class="float-badge-icon">🏆</span>
+          <span style="color:#059669">¡Aprobado!</span>&nbsp;Clase B
+        </div>
+
+        <div class="platform-mockup">
+          <div class="pm-window">
+            <!-- Barra superior -->
+            <div class="pm-topbar">
+              <div class="pm-dots">
+                <div class="pm-dot" style="background:#ff5f57"></div>
+                <div class="pm-dot" style="background:#febc2e"></div>
+                <div class="pm-dot" style="background:#28c840"></div>
+              </div>
+              <div class="pm-title">Simulacro — Clase B</div>
+              <div class="pm-badge">En vivo</div>
+            </div>
+            <!-- Progreso -->
+            <div class="pm-progress-row">
+              <span class="pm-progress-label">Pregunta 8 de 30</span>
+              <span class="pm-progress-val">62% completado</span>
+            </div>
+            <div class="pm-progress-bar">
+              <div class="pm-progress-fill"></div>
+            </div>
+            <!-- Pregunta -->
+            <div class="pm-question-num">Señales de tránsito</div>
+            <div class="pm-question">¿Qué indica una señal octagonal de color rojo con la palabra «PARE» en blanco?</div>
+            <!-- Opciones -->
+            <div class="pm-option wrong">
+              <div class="pm-opt-letter w">A</div>
+              Reducir la velocidad y ceder el paso
+            </div>
+            <div class="pm-option correct">
+              <div class="pm-opt-letter c">B</div>
+              Detención obligatoria antes de cruzar
+            </div>
+            <div class="pm-option neutral">
+              <div class="pm-opt-letter n">C</div>
+              Prohibido el estacionamiento
+            </div>
+            <!-- Explicación -->
+            <div class="pm-explain">
+              <span class="pm-explain-icon">💡</span>
+              <span class="pm-explain-text">La señal PARE obliga a detenerse completamente. Ceder el paso corresponde a la señal «CEDA EL PASO», de forma triangular.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Badge flotante inferior -->
+        <div class="float-badge float-badge-2">
+          <span class="float-badge-icon">🔥</span>
+          Racha de&nbsp;<strong style="color:#f5a623">12 correctas</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">🔒 Pago 100% seguro</div>
+  <div class="trust-item">✅ Preguntas verificadas CONASET</div>
+  <div class="trust-item">↩️ Garantía 7 días</div>
+  <div class="trust-item">⚡ Acceso inmediato</div>
+  <div class="trust-item">💬 Soporte por WhatsApp</div>
+</div>
+
+<!-- EXÁMENES -->
+<section class="section" id="examenes" style="background:#f7f9fc">
+  <div class="section-label">Plataforma de estudio</div>
+  <h2 class="section-title">Elige tu tipo de licencia</h2>
+  <p class="section-sub">Cuestionarios especializados por categoría, con las preguntas exactas del examen municipal chileno actualizado al 2025.</p>
+  <div class="product-grid">
+
+    <!-- CLASE B -->
+    <a class="product-card card-b" href="https://obtentulicencia.cl/examen-clase-b/" target="_blank">
+      <div class="pc-featured-badge">⭐ La más solicitada</div>
+      <div class="pc-header">
+        <div class="pc-icon-wrap b">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="10" width="22" height="12" rx="3" fill="#3b82f6" opacity=".15"/>
+            <rect x="3" y="10" width="22" height="12" rx="3" stroke="#1a56db" stroke-width="1.5"/>
+            <path d="M6 10L9 5h10l3 5" stroke="#1a56db" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="8" cy="22" r="2.5" fill="#1a56db"/>
+            <circle cx="20" cy="22" r="2.5" fill="#1a56db"/>
+            <rect x="10" y="7" width="8" height="5" rx="1" fill="#1a56db" opacity=".2"/>
+            <rect x="5" y="13" width="5" height="3" rx="1" fill="#1a56db" opacity=".3"/>
+            <rect x="18" y="13" width="5" height="3" rx="1" fill="#1a56db" opacity=".3"/>
+          </svg>
+        </div>
+        <span class="pc-tag tag-b">Clase B · Automóvil</span>
+      </div>
+      <div class="pc-stats">
+        <div class="pc-stat">
+          <div class="pc-stat-val">850+</div>
+          <div class="pc-stat-lbl">preguntas</div>
+        </div>
+        <div class="pc-stat">
+          <div class="pc-stat-val">30</div>
+          <div class="pc-stat-lbl">por examen</div>
+        </div>
+        <div class="pc-stat">
+          <div class="pc-stat-val">92%</div>
+          <div class="pc-stat-lbl">aprobación</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="product-card-name">Licencia Clase B</div>
+        <div class="product-card-desc">La licencia más solicitada en Chile. Señales de tránsito, reglamento vial, distancias de seguridad y normas para automovilistas particulares.</div>
+        <div class="pc-diff-row">
+          <span class="pc-diff-label">Dificultad</span>
+          <span class="pc-diff-tag" style="background:#fef3e2;color:#b45309">Media</span>
+        </div>
+        <div class="pc-bar"><div class="pc-fill" style="width:55%;background:linear-gradient(90deg,#f5a623,#fbbf24)"></div></div>
+        <div class="product-card-meta">
+          <span class="product-card-free">✓ Gratis para siempre</span>
+          <span class="product-card-btn product-card-btn-featured">Practicar
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CLASE C -->
+    <a class="product-card card-c" href="https://obtentulicencia.cl/examen-clase-c/" target="_blank">
+      <div class="pc-header">
+        <div class="pc-icon-wrap c">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="14" cy="14" rx="4" ry="4" stroke="#b45309" stroke-width="1.5" fill="#b45309" fill-opacity=".1"/>
+            <circle cx="7" cy="19" r="3" stroke="#b45309" stroke-width="1.5" fill="#b45309" fill-opacity=".1"/>
+            <circle cx="21" cy="19" r="3" stroke="#b45309" stroke-width="1.5" fill="#b45309" fill-opacity=".1"/>
+            <path d="M10 19c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#b45309" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M7 16l3-4 4-2 4 2 1 3" stroke="#b45309" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <path d="M10 9.5V8a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5" stroke="#b45309" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="pc-tag tag-c">Clase C · Motocicleta</span>
+      </div>
+      <div class="pc-stats">
+        <div class="pc-stat">
+          <div class="pc-stat-val">620+</div>
+          <div class="pc-stat-lbl">preguntas</div>
+        </div>
+        <div class="pc-stat">
+          <div class="pc-stat-val">30</div>
+          <div class="pc-stat-lbl">por examen</div>
+        </div>
+        <div class="pc-stat">
+          <div class="pc-stat-val">89%</div>
+          <div class="pc-stat-lbl">aprobación</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="product-card-name">Licencia Clase C</div>
+        <div class="product-card-desc">Cuestionario especializado en normas, distancias de seguridad y señales específicas para motociclistas en vías chilenas.</div>
+        <div class="pc-diff-row">
+          <span class="pc-diff-label">Dificultad</span>
+          <span class="pc-diff-tag" style="background:#e8f0fe;color:#1a56db">Baja</span>
+        </div>
+        <div class="pc-bar"><div class="pc-fill" style="width:35%;background:linear-gradient(90deg,#3b82f6,#60a5fa)"></div></div>
+        <div class="product-card-meta">
+          <span class="product-card-free">✓ Gratis para siempre</span>
+          <span class="product-card-btn">Practicar
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- PROFESIONAL -->
+    <a class="product-card card-a" href="https://obtentulicencia.cl/examen-profesional/" target="_blank">
+      <div class="pc-header">
+        <div class="pc-icon-wrap a">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="11" width="18" height="10" rx="2" stroke="#065f46" stroke-width="1.5" fill="#065f46" fill-opacity=".1"/>
+            <rect x="20" y="14" width="6" height="7" rx="1.5" stroke="#065f46" stroke-width="1.5" fill="#065f46" fill-opacity=".1"/>
+            <path d="M2 16h24" stroke="#065f46" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="7" cy="22" r="2.5" fill="#065f46" fill-opacity=".2" stroke="#065f46" stroke-width="1.5"/>
+            <circle cx="17" cy="22" r="2.5" fill="#065f46" fill-opacity=".2" stroke="#065f46" stroke-width="1.5"/>
+            <circle cx="23" cy="22" r="2.5" fill="#065f46" fill-opacity=".2" stroke="#065f46" stroke-width="1.5"/>
+            <rect x="6" y="7" width="8" height="5" rx="1" stroke="#065f46" stroke-width="1.5" fill="#065f46" fill-opacity=".1"/>
+          </svg>
+        </div>
+        <span class="pc-tag tag-a">Clase A · Profesional</span>
+      </div>
+      <div class="pc-stats">
+        <div class="pc-stat">
+          <div class="pc-stat-val">1.100+</div>
+          <div class="pc-stat-lbl">preguntas</div>
+        </div>
+        <div class="pc-stat">
+          <div class="pc-stat-val">40</div>
+          <div class="pc-stat-lbl">por examen</div>
+        </div>
+        <div class="pc-stat">
+          <div class="pc-stat-val">85%</div>
+          <div class="pc-stat-lbl">aprobación</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="product-card-name">Licencia Profesional</div>
+        <div class="product-card-desc">Licencias A1 a A5. Foco en transporte de pasajeros, carga y normativa específica de vehículos pesados en Chile.</div>
+        <div class="pc-diff-row">
+          <span class="pc-diff-label">Dificultad</span>
+          <span class="pc-diff-tag" style="background:#fce7f3;color:#9d174d">Alta</span>
+        </div>
+        <div class="pc-bar"><div class="pc-fill" style="width:78%;background:linear-gradient(90deg,#ec4899,#f472b6)"></div></div>
+        <div class="product-card-meta">
+          <span class="product-card-free">✓ Gratis para siempre</span>
+          <span class="product-card-btn">Practicar
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="precios">
+  <div class="section-label">Planes</div>
+  <h2 class="section-title">Elige tu plan de estudio</h2>
+  <p class="section-sub">Empieza gratis. Sube a premium cuando quieras. Sin contratos ni letras chicas.</p>
+
+  <div class="pricing-toggle">
+    <button class="pricing-tab active" id="tab-15" onclick="setPlan('15')">15 días</button>
+    <button class="pricing-tab" id="tab-30" onclick="setPlan('30')">30 días</button>
+    <button class="pricing-tab" id="tab-libro" onclick="setPlan('libro')">30 días + libro</button>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- FREE -->
+    <div class="plan-card">
+      <div class="plan-name">Acceso inmediato</div>
+      <div class="plan-price">$0</div>
+      <div class="plan-period">gratis para siempre</div>
+      <div class="plan-divider"></div>
+      <div class="plan-feature"><span class="plan-check">✓</span>250 preguntas base</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Exámenes diarios ilimitados</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Estadísticas de progreso</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Todas las licencias incluidas</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Temario resumido</div>
+      <a class="plan-btn plan-btn-ghost" href="https://obtentulicencia.cl/test-clase-b/" target="_blank">Empezar gratis</a>
+    </div>
+
+    <!-- FEATURED -->
+    <div class="plan-card featured">
+      <div class="plan-featured-badge">⭐ Más popular</div>
+      <div class="plan-name" id="plan-name-feat">Premium 15 días</div>
+      <div class="plan-price" id="plan-price-feat">$7.000</div>
+      <div class="plan-period" id="plan-period-feat">acceso completo por 15 días</div>
+      <div class="plan-divider"></div>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>+1.500 preguntas actualizadas</div>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Últimos exámenes municipales reales</div>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Explicación detallada de cada error</div>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Videos de circuitos municipales</div>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Audiolibro especializado</div>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Pruebas por categorías</div>
+      <div class="plan-feature" id="plan-libro-feat" style="color:#374151;display:none"><span class="plan-check">✓</span>📚 Libro físico a domicilio (todo Chile)</div>
+      <a class="plan-btn plan-btn-primary" id="plan-cta-feat" href="https://obtentulicencia.cl/carrito/?add-to-cart=2307" target="_blank">Comprar ahora →</a>
+    </div>
+
+    <!-- INTENSIVO -->
+    <div class="plan-card">
+      <div class="plan-name">Plan intensivo</div>
+      <div class="plan-price">$10.000</div>
+      <div class="plan-period">acceso completo por 30 días</div>
+      <div class="plan-divider"></div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Todo lo del plan popular</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Pruebas por categorías avanzadas</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Modo simulacro oficial</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Soporte prioritario por WhatsApp</div>
+      <a class="plan-btn plan-btn-ghost" href="https://obtentulicencia.cl/carrito/?add-to-cart=2607" target="_blank">Comprar →</a>
+    </div>
+  </div>
+  <div class="plan-guarantee">🔒 Garantía de devolución de 7 días · Sin preguntas · Por WhatsApp</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonios" style="background:#fff">
+  <div class="section-label">Casos de éxito</div>
+  <h2 class="section-title">+4.800 alumnos aprobados</h2>
+  <p class="section-sub">Ellos usaron nuestra plataforma y pasaron a la primera.</p>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Estudié solo 5 días con el plan premium y aprobé al primer intento. Las preguntas son exactamente las del examen real del municipio. El apartado de errores es clave para no repetirlas."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:#1a56db">CP</div>
+        <div>
+          <div class="testi-info-name">Carlos P.</div>
+          <div class="testi-info-class">Licencia Clase B · Santiago</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"El audiolibro fue un diferencial enorme. Lo escuchaba mientras hacía otras cosas. En una semana tenía todo claro y aprobé con nota máxima en el municipio."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:#b45309">MG</div>
+        <div>
+          <div class="testi-info-name">Marcela G.</div>
+          <div class="testi-info-class">Licencia Clase C · Concepción</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Excelente para la profesional A3. Las preguntas son muy específicas y bien organizadas. Recomiendo el plan con libro físico, el envío llega rápido y complementa perfecto."</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:#065f46">JR</div>
+        <div>
+          <div class="testi-info-name">Jorge R.</div>
+          <div class="testi-info-class">Licencia Profesional A3 · Valparaíso</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG TEASER -->
+<section class="blog-section" id="blog">
+  <div class="section-label">Recursos gratuitos</div>
+  <h2 class="section-title">Blog de preparación</h2>
+  <p class="section-sub">Artículos con consejos, novedades del reglamento y guías para aprobar tu examen.</p>
+  <div class="blog-grid">
+    <a class="blog-card" href="https://obtentulicencia.cl/" target="_blank">
+      <div class="blog-card-img" style="background:#e8f0fe">📋</div>
+      <div class="blog-card-body">
+        <div class="blog-card-cat">Consejos</div>
+        <div class="blog-card-title">Cómo aprobar el examen teórico a la primera en Chile</div>
+        <div class="blog-card-desc">Las 7 estrategias más efectivas según alumnos que lo lograron al primer intento.</div>
+      </div>
+    </a>
+    <a class="blog-card" href="https://obtentulicencia.cl/" target="_blank">
+      <div class="blog-card-img" style="background:#fef3e2">🚦</div>
+      <div class="blog-card-body">
+        <div class="blog-card-cat">Reglamento</div>
+        <div class="blog-card-title">Señales de tránsito que más confunden en el examen 2025</div>
+        <div class="blog-card-desc">Repasa las señales más frecuentes en preguntas del examen municipal actualizado.</div>
+      </div>
+    </a>
+    <a class="blog-card" href="https://obtentulicencia.cl/" target="_blank">
+      <div class="blog-card-img" style="background:#e6faf2">📅</div>
+      <div class="blog-card-body">
+        <div class="blog-card-cat">Guía práctica</div>
+        <div class="blog-card-title">Cuántas preguntas tiene el examen teórico y cómo se calcula el puntaje</div>
+        <div class="blog-card-desc">Todo lo que debes saber sobre el formato oficial del examen municipal en Chile.</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-label">Preguntas frecuentes</div>
+  <h2 class="section-title">¿Tienes dudas?</h2>
+  <p class="section-sub">Respuestas a las preguntas más comunes de nuestros alumnos antes de empezar.</p>
+
+  <div class="faq-item" onclick="toggleFaq(0)">
+    <div class="faq-header">¿Cuántas preguntas tiene el examen teórico municipal en Chile? <span class="faq-chevron" id="chev0">▾</span></div>
+    <div class="faq-body" id="faq0"><p>El examen teórico municipal en Chile consta de 30 preguntas de alternativas. Debes responder correctamente al menos 24 para aprobar (80% de exigencia). Nuestra plataforma incluye +1.500 preguntas reales para que llegues más que preparado el día del examen.</p></div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(1)">
+    <div class="faq-header">¿Las preguntas están actualizadas al 2025? <span class="faq-chevron" id="chev1">▾</span></div>
+    <div class="faq-body" id="faq1"><p>Sí. Actualizamos nuestra base de datos permanentemente según las modificaciones del Reglamento de Tránsito y los cuestionarios oficiales CONASET vigentes en 2025. Siempre encontrarás las preguntas más recientes del examen municipal.</p></div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(2)">
+    <div class="faq-header">¿Puedo usar la plataforma desde el celular? <span class="faq-chevron" id="chev2">▾</span></div>
+    <div class="faq-body" id="faq2"><p>Absolutamente. La plataforma está 100% optimizada para móvil, tablet y computadora. Puedes estudiar en cualquier dispositivo en cualquier momento, sin necesidad de descargar ninguna aplicación. Solo necesitas conexión a internet.</p></div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(3)">
+    <div class="faq-header">¿Qué pasa si no estoy satisfecho? ¿Hay garantía? <span class="faq-chevron" id="chev3">▾</span></div>
+    <div class="faq-body" id="faq3"><p>Ofrecemos garantía de devolución de 7 días sin preguntas. Si compras cualquier plan premium y no estás satisfecho con la plataforma, te devolvemos el 100% de tu dinero. Solo escríbenos por WhatsApp y lo resolvemos de inmediato.</p></div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(4)">
+    <div class="faq-header">¿El libro físico llega a todo Chile? <span class="faq-chevron" id="chev4">▾</span></div>
+    <div class="faq-body" id="faq4"><p>Sí, realizamos despacho a todo Chile a través de Correos de Chile y Chilexpress. El tiempo de entrega es de 3 a 7 días hábiles dependiendo de tu región. El costo de envío está incluido en el precio del plan con libro, sin costos adicionales.</p></div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(5)">
+    <div class="faq-header">¿En qué se diferencia el plan gratuito del premium? <span class="faq-chevron" id="chev5">▾</span></div>
+    <div class="faq-body" id="faq5"><p>El plan gratuito te da acceso a 250 preguntas base y exámenes diarios ilimitados. El plan premium desbloquea más de 1.500 preguntas actualizadas, los últimos exámenes municipales reales, explicación detallada de cada error, videos de circuitos y el audiolibro especializado. La diferencia en preparación es significativa.</p></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contacto">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">
+        <div class="footer-brand-icon">🚗</div>
+        Obtén tu licencia
+      </div>
+      <p class="footer-brand-desc">La plataforma de preparación teórica para licencia de conducir más completa de Chile. Actualizada al examen municipal 2025. Más de 4.800 alumnos aprobados.</p>
+      <div class="footer-socials">
+        <a class="footer-social" href="https://web.facebook.com/profile.php?id=61562185082109" target="_blank">f</a>
+        <a class="footer-social" href="https://youtube.com/@obtentulicencia" target="_blank">▶</a>
+        <a class="footer-social" href="https://open.spotify.com/show/0ZpjZdo1kz4ittc1jsSbGs" target="_blank">🎵</a>
+        <a class="footer-social" href="https://www.instagram.com/obtentulicencia_oficial" target="_blank">◉</a>
+        <a class="footer-social" href="https://www.tiktok.com/@obtentulicencia_oficial" target="_blank">♪</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Plataforma</div>
+      <a class="footer-link" href="https://obtentulicencia.cl/examen-clase-b/" target="_blank">Licencia Clase B</a>
+      <a class="footer-link" href="https://obtentulicencia.cl/examen-clase-c/" target="_blank">Licencia Clase C</a>
+      <a class="footer-link" href="https://obtentulicencia.cl/examen-profesional/" target="_blank">Licencia Profesional</a>
+      <a class="footer-link" href="https://obtentulicencia.cl/tienda/" target="_blank">Plan Premium</a>
+      <a class="footer-link" href="https://obtentulicencia.cl/preguntas-frecuentes-clase-b/" target="_blank">Preguntas frecuentes</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Ayuda</div>
+      <a class="footer-link" href="#faq">Preguntas frecuentes</a>
+      <a class="footer-link" href="https://obtentulicencia.cl/contacto-examen-municipal/" target="_blank">Contacto</a>
+      <a class="footer-link" href="https://obtentulicencia.cl/mi-cuenta/" target="_blank">Mi cuenta</a>
+      <a class="footer-link" href="https://obtentulicencia.cl/carrito/" target="_blank">Mi carrito</a>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <a class="footer-link" href="#">Política de privacidad</a>
+      <a class="footer-link" href="#">Términos y condiciones</a>
+      <a class="footer-link" href="#">Política de devoluciones</a>
+      <div style="margin-top:20px;font-size:12px;color:rgba(255,255,255,0.3);line-height:2">
+        contacto@obtentulicencia.cl<br>
+        WhatsApp: +56 9 XXXX XXXX<br>
+        RUT: 76.XXX.XXX-X
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Obtén tu licencia · Todos los derechos reservados</span>
+    <div class="footer-bottom-right">
+      <a class="footer-bottom-link" href="#">Privacidad</a>
+      <a class="footer-bottom-link" href="#">Términos</a>
+      <span style="color:rgba(255,255,255,0.28)">🔒 SSL seguro</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/56900000000" target="_blank">
+  <div class="wa-pulse"></div>
+  💬 WhatsApp
+</a>
+
+<script>
+// Contador animado
+function animateCounter(id, target, prefix, suffix, duration) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  let start = 0;
+  const step = target / 70;
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = prefix + Math.round(start).toLocaleString('es-CL') + suffix;
+    if (start >= target) clearInterval(timer);
+  }, duration / 70);
+}
+
+// Intersection Observer: anima contadores solo cuando son visibles
+const counterObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    animateCounter('counter1', 4800, '+', '', 1400);
+    animateCounter('counter2', 96, '', '%', 1100);
+    counterObserver.disconnect();
+  }
+}, { threshold: 0.4 });
+const c1 = document.getElementById('counter1');
+if (c1) counterObserver.observe(c1);
+
+// Toggle nav mobile
+function toggleNav() {
+  document.querySelector('.nav-links').classList.toggle('open');
+}
+
+// Toggle de planes
+const planData = {
+  '15':    { name: 'Premium 15 días',      price: '$7.000',  period: 'acceso completo por 15 días',           libro: false, cart: 'https://obtentulicencia.cl/carrito/?add-to-cart=2307' },
+  '30':    { name: 'Premium 30 días',      price: '$10.000', period: 'acceso completo por 30 días',           libro: false, cart: 'https://obtentulicencia.cl/carrito/?add-to-cart=2607' },
+  'libro': { name: 'Premium 30d + libro',  price: '$18.000', period: 'acceso 30 días + libro físico a domicilio', libro: true,  cart: 'https://obtentulicencia.cl/tienda/' }
+};
+
+function setPlan(plan) {
+  document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + plan).classList.add('active');
+  const d = planData[plan];
+  document.getElementById('plan-name-feat').textContent = d.name;
+  document.getElementById('plan-price-feat').textContent = d.price;
+  document.getElementById('plan-period-feat').textContent = d.period;
+  document.getElementById('plan-libro-feat').style.display = d.libro ? 'flex' : 'none';
+  document.getElementById('plan-cta-feat').href = d.cart;
+}
+
+// FAQ acordeón
+function toggleFaq(i) {
+  const body = document.getElementById('faq' + i);
+  const chev = document.getElementById('chev' + i);
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.faq-body').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('open'));
+  if (!isOpen) { body.classList.add('open'); chev.classList.add('open'); }
+}
+
+// Nav activo al hacer scroll
+const sections = ['inicio','examenes','precios','testimonios','faq','contacto'];
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 80) current = id;
+  });
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
