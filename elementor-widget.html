@@ -33,7 +33,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
 .stat-num{color:#f5a623;font-size:28px;font-weight:900}
 .stat-lbl{color:rgba(255,255,255,0.5);font-size:12px;margin-top:3px}
 
-/* HERO RIGHT â€” plataforma mockup */
+/* HERO RIGHT — plataforma mockup */
 .hero-right{display:flex;align-items:center;justify-content:center}
 .platform-mockup{width:100%;max-width:420px;animation:floatY 4s ease-in-out infinite}
 .pm-window{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:20px;backdrop-filter:blur(10px)}
@@ -93,7 +93,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
 .tag-b{background:#e8f0fe;color:#1a56db}
 .tag-c{background:#fef3e2;color:#b45309}
 .tag-a{background:#e6faf2;color:#065f46}
-/* Stats rÃ¡pidas */
+/* Stats rápidas */
 .pc-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid #f0f4f8}
 .pc-stat{padding:12px 16px;text-align:center;border-right:1px solid #f0f4f8}
 .pc-stat:last-child{border-right:none}
@@ -142,6 +142,24 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
 .plan-btn-ghost{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.2)}
 .plan-btn-ghost:hover{background:rgba(255,255,255,0.16)}
 .plan-guarantee{text-align:center;margin-top:24px;font-size:12px;color:rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;gap:6px}
+
+/* SELECTOR DE TIPO DE LICENCIA */
+.lic-tabs{display:flex;gap:10px;margin-bottom:36px;flex-wrap:wrap}
+.lic-tab{padding:11px 28px;border-radius:99px;font-size:14px;font-weight:700;cursor:pointer;border:2px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.55);transition:all .25s;display:flex;align-items:center;gap:8px}
+.lic-tab.active{background:#f5a623;color:#fff;border-color:#f5a623;box-shadow:0 4px 16px rgba(245,166,35,0.35)}
+.lic-tab:hover:not(.active){border-color:rgba(255,255,255,0.45);color:#fff}
+
+/* SELECTOR DE DÍAS (card flexible) */
+.day-selector{display:flex;gap:6px;margin:4px 0 16px}
+.day-btn{flex:1;padding:9px 4px;border-radius:99px;font-size:12px;font-weight:800;cursor:pointer;border:1.5px solid rgba(26,43,74,0.15);background:#f0f4f8;color:#5a6a85;transition:all .2s}
+.day-btn.active{background:#f5a623;color:#fff;border-color:#f5a623;box-shadow:0 2px 8px rgba(245,166,35,0.3)}
+.day-btn:hover:not(.active){border-color:#f5a623;color:#f5a623}
+
+/* TOGGLE LIBRO (card premium) */
+.book-toggle{display:flex;gap:6px;margin:4px 0 16px}
+.book-btn{flex:1;padding:9px 4px;border-radius:99px;font-size:12px;font-weight:800;cursor:pointer;border:1.5px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.55);transition:all .2s}
+.book-btn.active{background:rgba(255,255,255,0.14);color:#fff;border-color:rgba(255,255,255,0.45)}
+.book-btn:hover:not(.active){border-color:rgba(255,255,255,0.35);color:#fff}
 
 /* TESTIMONIALS */
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -251,19 +269,19 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
 <!-- NAV -->
 <nav class="nav">
   <a class="nav-logo" href="https://obtentulicencia.cl/" target="_blank">
-    <div class="nav-logo-icon">ðŸš—</div>
-    ObtÃ©n tu licencia
+    <div class="nav-logo-icon">🚗</div>
+    Obtén tu licencia
   </a>
   <div class="nav-links">
     <a class="nav-link active" href="#inicio">Inicio</a>
-    <a class="nav-link" href="#examenes">ExÃ¡menes</a>
+    <a class="nav-link" href="#examenes">Exámenes</a>
     <a class="nav-link" href="#precios">Precios</a>
     <a class="nav-link" href="#testimonios">Opiniones</a>
     <a class="nav-link" href="#faq">FAQ</a>
     <a class="nav-link" href="#contacto">Contacto</a>
   </div>
-  <a class="nav-cta" href="https://obtentulicencia.cl/test-clase-b/" target="_blank">Examen gratis â†’</a>
-  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="MenÃº">
+  <a class="nav-cta" href="https://obtentulicencia.cl/test-clase-b/" target="_blank">Examen gratis →</a>
+  <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -279,12 +297,12 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
         Actualizado al examen municipal 2025
       </div>
       <h1 class="hero-title">Aprueba tu licencia<br>de conducir<br><span>al primer intento</span></h1>
-      <p class="hero-sub">+1.500 preguntas reales de exÃ¡menes municipales chilenos. Simulacros ilimitados, explicaciÃ³n de errores y audiolibro incluido en el plan premium.</p>
+      <p class="hero-sub">+1.500 preguntas reales de exámenes municipales chilenos. Simulacros ilimitados, explicación de errores y audiolibro incluido en el plan premium.</p>
       <div class="hero-btns">
-        <a class="btn-primary" href="https://obtentulicencia.cl/test-clase-b/" target="_blank">ðŸŽ¯ Practica gratis ahora</a>
-        <a class="btn-ghost" href="#precios">Ver planes â†’</a>
+        <a class="btn-primary" href="https://obtentulicencia.cl/test-clase-b/" target="_blank">🎯 Practica gratis ahora</a>
+        <a class="btn-ghost" href="#precios">Ver planes →</a>
       </div>
-      <p class="hero-social-proof">â­ +4.800 estudiantes aprobaron usando esta plataforma</p>
+      <p class="hero-social-proof">⭐ +4.800 estudiantes aprobaron usando esta plataforma</p>
       <div class="hero-stats">
         <div>
           <div class="stat-num" id="counter1">+0</div>
@@ -296,7 +314,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
         </div>
         <div>
           <div class="stat-num" id="counter2">0%</div>
-          <div class="stat-lbl">tasa de aprobaciÃ³n</div>
+          <div class="stat-lbl">tasa de aprobación</div>
         </div>
         <div>
           <div class="stat-num">24/7</div>
@@ -310,8 +328,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
       <div class="hero-right-wrap">
         <!-- Badge flotante superior -->
         <div class="float-badge float-badge-1">
-          <span class="float-badge-icon">ðŸ†</span>
-          <span style="color:#059669">Â¡Aprobado!</span>&nbsp;Clase B
+          <span class="float-badge-icon">🏆</span>
+          <span style="color:#059669">¡Aprobado!</span>&nbsp;Clase B
         </div>
 
         <div class="platform-mockup">
@@ -323,7 +341,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
                 <div class="pm-dot" style="background:#febc2e"></div>
                 <div class="pm-dot" style="background:#28c840"></div>
               </div>
-              <div class="pm-title">Simulacro â€” Clase B</div>
+              <div class="pm-title">Simulacro — Clase B</div>
               <div class="pm-badge">En vivo</div>
             </div>
             <!-- Progreso -->
@@ -335,8 +353,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
               <div class="pm-progress-fill"></div>
             </div>
             <!-- Pregunta -->
-            <div class="pm-question-num">SeÃ±ales de trÃ¡nsito</div>
-            <div class="pm-question">Â¿QuÃ© indica una seÃ±al octagonal de color rojo con la palabra Â«PAREÂ» en blanco?</div>
+            <div class="pm-question-num">Señales de tránsito</div>
+            <div class="pm-question">¿Qué indica una señal octagonal de color rojo con la palabra «PARE» en blanco?</div>
             <!-- Opciones -->
             <div class="pm-option wrong">
               <div class="pm-opt-letter w">A</div>
@@ -344,23 +362,23 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
             </div>
             <div class="pm-option correct">
               <div class="pm-opt-letter c">B</div>
-              DetenciÃ³n obligatoria antes de cruzar
+              Detención obligatoria antes de cruzar
             </div>
             <div class="pm-option neutral">
               <div class="pm-opt-letter n">C</div>
               Prohibido el estacionamiento
             </div>
-            <!-- ExplicaciÃ³n -->
+            <!-- Explicación -->
             <div class="pm-explain">
-              <span class="pm-explain-icon">ðŸ’¡</span>
-              <span class="pm-explain-text">La seÃ±al PARE obliga a detenerse completamente. Ceder el paso corresponde a la seÃ±al Â«CEDA EL PASOÂ», de forma triangular.</span>
+              <span class="pm-explain-icon">💡</span>
+              <span class="pm-explain-text">La señal PARE obliga a detenerse completamente. Ceder el paso corresponde a la señal «CEDA EL PASO», de forma triangular.</span>
             </div>
           </div>
         </div>
 
         <!-- Badge flotante inferior -->
         <div class="float-badge float-badge-2">
-          <span class="float-badge-icon">ðŸ”¥</span>
+          <span class="float-badge-icon">🔥</span>
           Racha de&nbsp;<strong style="color:#f5a623">12 correctas</strong>
         </div>
       </div>
@@ -371,23 +389,23 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-item">ðŸ”’ Pago 100% seguro</div>
-  <div class="trust-item">âœ… Preguntas verificadas CONASET</div>
-  <div class="trust-item">â†©ï¸ GarantÃ­a 7 dÃ­as</div>
-  <div class="trust-item">âš¡ Acceso inmediato</div>
-  <div class="trust-item">ðŸ’¬ Soporte por WhatsApp</div>
+  <div class="trust-item">🔒 Pago 100% seguro</div>
+  <div class="trust-item">✅ Preguntas verificadas CONASET</div>
+  <div class="trust-item">↩️ Garantía 7 días</div>
+  <div class="trust-item">⚡ Acceso inmediato</div>
+  <div class="trust-item">💬 Soporte por WhatsApp</div>
 </div>
 
-<!-- EXÃMENES -->
+<!-- EXÁMENES -->
 <section class="section" id="examenes" style="background:#f7f9fc">
   <div class="section-label">Plataforma de estudio</div>
   <h2 class="section-title">Elige tu tipo de licencia</h2>
-  <p class="section-sub">Cuestionarios especializados por categorÃ­a, con las preguntas exactas del examen municipal chileno actualizado al 2025.</p>
+  <p class="section-sub">Cuestionarios especializados por categoría, con las preguntas exactas del examen municipal chileno actualizado al 2025.</p>
   <div class="product-grid">
 
     <!-- CLASE B -->
     <a class="product-card card-b" href="https://obtentulicencia.cl/examen-clase-b/" target="_blank">
-      <div class="pc-featured-badge">â­ La mÃ¡s solicitada</div>
+      <div class="pc-featured-badge">⭐ La más solicitada</div>
       <div class="pc-header">
         <div class="pc-icon-wrap b">
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -401,7 +419,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
             <rect x="18" y="13" width="5" height="3" rx="1" fill="#1a56db" opacity=".3"/>
           </svg>
         </div>
-        <span class="pc-tag tag-b">Clase B Â· AutomÃ³vil</span>
+        <span class="pc-tag tag-b">Clase B · Automóvil</span>
       </div>
       <div class="pc-stats">
         <div class="pc-stat">
@@ -414,19 +432,19 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
         </div>
         <div class="pc-stat">
           <div class="pc-stat-val">92%</div>
-          <div class="pc-stat-lbl">aprobaciÃ³n</div>
+          <div class="pc-stat-lbl">aprobación</div>
         </div>
       </div>
       <div class="pc-body">
         <div class="product-card-name">Licencia Clase B</div>
-        <div class="product-card-desc">La licencia mÃ¡s solicitada en Chile. SeÃ±ales de trÃ¡nsito, reglamento vial, distancias de seguridad y normas para automovilistas particulares.</div>
+        <div class="product-card-desc">La licencia más solicitada en Chile. Señales de tránsito, reglamento vial, distancias de seguridad y normas para automovilistas particulares.</div>
         <div class="pc-diff-row">
           <span class="pc-diff-label">Dificultad</span>
           <span class="pc-diff-tag" style="background:#fef3e2;color:#b45309">Media</span>
         </div>
         <div class="pc-bar"><div class="pc-fill" style="width:55%;background:linear-gradient(90deg,#f5a623,#fbbf24)"></div></div>
         <div class="product-card-meta">
-          <span class="product-card-free">âœ“ Gratis para siempre</span>
+          <span class="product-card-free">✓ Gratis para siempre</span>
           <span class="product-card-btn product-card-btn-featured">Practicar
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
@@ -447,7 +465,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
             <path d="M10 9.5V8a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1.5" stroke="#b45309" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <span class="pc-tag tag-c">Clase C Â· Motocicleta</span>
+        <span class="pc-tag tag-c">Clase C · Motocicleta</span>
       </div>
       <div class="pc-stats">
         <div class="pc-stat">
@@ -460,19 +478,19 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
         </div>
         <div class="pc-stat">
           <div class="pc-stat-val">89%</div>
-          <div class="pc-stat-lbl">aprobaciÃ³n</div>
+          <div class="pc-stat-lbl">aprobación</div>
         </div>
       </div>
       <div class="pc-body">
         <div class="product-card-name">Licencia Clase C</div>
-        <div class="product-card-desc">Cuestionario especializado en normas, distancias de seguridad y seÃ±ales especÃ­ficas para motociclistas en vÃ­as chilenas.</div>
+        <div class="product-card-desc">Cuestionario especializado en normas, distancias de seguridad y señales específicas para motociclistas en vías chilenas.</div>
         <div class="pc-diff-row">
           <span class="pc-diff-label">Dificultad</span>
           <span class="pc-diff-tag" style="background:#e8f0fe;color:#1a56db">Baja</span>
         </div>
         <div class="pc-bar"><div class="pc-fill" style="width:35%;background:linear-gradient(90deg,#3b82f6,#60a5fa)"></div></div>
         <div class="product-card-meta">
-          <span class="product-card-free">âœ“ Gratis para siempre</span>
+          <span class="product-card-free">✓ Gratis para siempre</span>
           <span class="product-card-btn">Practicar
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
@@ -494,7 +512,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
             <rect x="6" y="7" width="8" height="5" rx="1" stroke="#065f46" stroke-width="1.5" fill="#065f46" fill-opacity=".1"/>
           </svg>
         </div>
-        <span class="pc-tag tag-a">Clase A Â· Profesional</span>
+        <span class="pc-tag tag-a">Clase A · Profesional</span>
       </div>
       <div class="pc-stats">
         <div class="pc-stat">
@@ -507,19 +525,19 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
         </div>
         <div class="pc-stat">
           <div class="pc-stat-val">85%</div>
-          <div class="pc-stat-lbl">aprobaciÃ³n</div>
+          <div class="pc-stat-lbl">aprobación</div>
         </div>
       </div>
       <div class="pc-body">
         <div class="product-card-name">Licencia Profesional</div>
-        <div class="product-card-desc">Licencias A1 a A5. Foco en transporte de pasajeros, carga y normativa especÃ­fica de vehÃ­culos pesados en Chile.</div>
+        <div class="product-card-desc">Licencias A1 a A5. Foco en transporte de pasajeros, carga y normativa específica de vehículos pesados en Chile.</div>
         <div class="pc-diff-row">
           <span class="pc-diff-label">Dificultad</span>
           <span class="pc-diff-tag" style="background:#fce7f3;color:#9d174d">Alta</span>
         </div>
         <div class="pc-bar"><div class="pc-fill" style="width:78%;background:linear-gradient(90deg,#ec4899,#f472b6)"></div></div>
         <div class="product-card-meta">
-          <span class="product-card-free">âœ“ Gratis para siempre</span>
+          <span class="product-card-free">✓ Gratis para siempre</span>
           <span class="product-card-btn">Practicar
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
@@ -536,96 +554,106 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
   <h2 class="section-title">Elige tu plan de estudio</h2>
   <p class="section-sub">Empieza gratis. Sube a premium cuando quieras. Sin contratos ni letras chicas.</p>
 
-  <div class="pricing-toggle">
-    <button class="pricing-tab active" id="tab-15" onclick="setPlan('15')">15 dÃ­as</button>
-    <button class="pricing-tab" id="tab-30" onclick="setPlan('30')">30 dÃ­as</button>
-    <button class="pricing-tab" id="tab-libro" onclick="setPlan('libro')">30 dÃ­as + libro</button>
+  <!-- Selector tipo de licencia -->
+  <div class="lic-tabs">
+    <button class="lic-tab active" onclick="selectLicType('particular', this)">🚗 Clases B · C · D · E · F</button>
+    <button class="lic-tab" onclick="selectLicType('profesional', this)">🚛 Licencias Profesionales</button>
   </div>
 
   <div class="pricing-grid">
-    <!-- FREE -->
+
+    <!-- CARD 1: FREE -->
     <div class="plan-card">
       <div class="plan-name">Acceso inmediato</div>
       <div class="plan-price">$0</div>
       <div class="plan-period">gratis para siempre</div>
       <div class="plan-divider"></div>
-      <div class="plan-feature"><span class="plan-check">âœ“</span>250 preguntas base</div>
-      <div class="plan-feature"><span class="plan-check">âœ“</span>ExÃ¡menes diarios ilimitados</div>
-      <div class="plan-feature"><span class="plan-check">âœ“</span>EstadÃ­sticas de progreso</div>
-      <div class="plan-feature"><span class="plan-check">âœ“</span>Todas las licencias incluidas</div>
-      <div class="plan-feature"><span class="plan-check">âœ“</span>Temario resumido</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>250 preguntas base</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Exámenes diarios ilimitados</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Estadísticas de progreso</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Todas las licencias incluidas</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Temario resumido</div>
       <a class="plan-btn plan-btn-ghost" href="https://obtentulicencia.cl/test-clase-b/" target="_blank">Empezar gratis</a>
     </div>
 
-    <!-- FEATURED -->
+    <!-- CARD 2: FLEXIBLE (selector de días) -->
     <div class="plan-card featured">
-      <div class="plan-featured-badge">â­ MÃ¡s popular</div>
-      <div class="plan-name" id="plan-name-feat">Premium 15 dÃ­as</div>
-      <div class="plan-price" id="plan-price-feat">$7.000</div>
-      <div class="plan-period" id="plan-period-feat">acceso completo por 15 dÃ­as</div>
+      <div class="plan-featured-badge">⭐ Más popular</div>
+      <div class="plan-name">Plan Flexible</div>
+      <div class="day-selector">
+        <button class="day-btn" onclick="selectDays(1, this)">1 día</button>
+        <button class="day-btn" onclick="selectDays(5, this)">5 días</button>
+        <button class="day-btn active" onclick="selectDays(15, this)">15 días</button>
+      </div>
+      <div class="plan-price" id="flex-price">$6.900</div>
+      <div class="plan-period" id="flex-period">acceso completo por 15 días</div>
       <div class="plan-divider"></div>
-      <div class="plan-feature" style="color:#374151"><span class="plan-check">âœ“</span>+1.500 preguntas actualizadas</div>
-      <div class="plan-feature" style="color:#374151"><span class="plan-check">âœ“</span>Ãšltimos exÃ¡menes municipales reales</div>
-      <div class="plan-feature" style="color:#374151"><span class="plan-check">âœ“</span>ExplicaciÃ³n detallada de cada error</div>
-      <div class="plan-feature" style="color:#374151"><span class="plan-check">âœ“</span>Videos de circuitos municipales</div>
-      <div class="plan-feature" style="color:#374151"><span class="plan-check">âœ“</span>Audiolibro especializado</div>
-      <div class="plan-feature" style="color:#374151"><span class="plan-check">âœ“</span>Pruebas por categorÃ­as</div>
-      <div class="plan-feature" id="plan-libro-feat" style="color:#374151;display:none"><span class="plan-check">âœ“</span>ðŸ“š Libro fÃ­sico a domicilio (todo Chile)</div>
-      <a class="plan-btn plan-btn-primary" id="plan-cta-feat" href="https://obtentulicencia.cl/carrito/?add-to-cart=2307" target="_blank">Comprar ahora â†’</a>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>+1.500 preguntas actualizadas</div>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Últimos exámenes municipales reales</div>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Explicación detallada de cada error</div>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Videos de circuitos municipales</div>
+      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Audiolibro especializado</div>
+      <a class="plan-btn plan-btn-primary" id="flex-cta" href="https://obtentulicencia.cl/carrito/?add-to-cart=2307" target="_blank">Comprar ahora →</a>
     </div>
 
-    <!-- INTENSIVO -->
+    <!-- CARD 3: PREMIUM 30 DÍAS (toggle libro) -->
     <div class="plan-card">
-      <div class="plan-name">Plan intensivo</div>
-      <div class="plan-price">$10.000</div>
-      <div class="plan-period">acceso completo por 30 dÃ­as</div>
+      <div class="plan-name">Plan Premium</div>
+      <div class="book-toggle">
+        <button class="book-btn active" onclick="selectBook(false, this)">Sin libro</button>
+        <button class="book-btn" onclick="selectBook(true, this)">Con libro 📚</button>
+      </div>
+      <div class="plan-price" id="prem-price">$14.900</div>
+      <div class="plan-period">acceso completo por 30 días</div>
       <div class="plan-divider"></div>
-      <div class="plan-feature"><span class="plan-check">âœ“</span>Todo lo del plan popular</div>
-      <div class="plan-feature"><span class="plan-check">âœ“</span>Pruebas por categorÃ­as avanzadas</div>
-      <div class="plan-feature"><span class="plan-check">âœ“</span>Modo simulacro oficial</div>
-      <div class="plan-feature"><span class="plan-check">âœ“</span>Soporte prioritario por WhatsApp</div>
-      <a class="plan-btn plan-btn-ghost" href="https://obtentulicencia.cl/carrito/?add-to-cart=2607" target="_blank">Comprar â†’</a>
+      <div class="plan-feature"><span class="plan-check">✓</span>Todo lo del plan flexible</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Pruebas por categorías avanzadas</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Modo simulacro oficial</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Soporte prioritario por WhatsApp</div>
+      <div class="plan-feature" id="prem-book-feat" style="display:none"><span class="plan-check">✓</span>📚 Libro físico a domicilio (todo Chile)</div>
+      <a class="plan-btn plan-btn-ghost" id="prem-cta" href="https://obtentulicencia.cl/carrito/?add-to-cart=2607" target="_blank">Comprar →</a>
     </div>
+
   </div>
-  <div class="plan-guarantee">ðŸ”’ GarantÃ­a de devoluciÃ³n de 7 dÃ­as Â· Sin preguntas Â· Por WhatsApp</div>
+  <div class="plan-guarantee">🔒 Garantía de devolución de 7 días · Sin preguntas · Por WhatsApp</div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="section" id="testimonios" style="background:#fff">
-  <div class="section-label">Casos de Ã©xito</div>
+  <div class="section-label">Casos de éxito</div>
   <h2 class="section-title">+4.800 alumnos aprobados</h2>
   <p class="section-sub">Ellos usaron nuestra plataforma y pasaron a la primera.</p>
   <div class="testi-grid">
     <div class="testi-card">
-      <div class="testi-stars">â˜…â˜…â˜…â˜…â˜…</div>
-      <p class="testi-text">"EstudiÃ© solo 5 dÃ­as con el plan premium y aprobÃ© al primer intento. Las preguntas son exactamente las del examen real del municipio. El apartado de errores es clave para no repetirlas."</p>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Estudié solo 5 días con el plan premium y aprobé al primer intento. Las preguntas son exactamente las del examen real del municipio. El apartado de errores es clave para no repetirlas."</p>
       <div class="testi-author">
         <div class="testi-avatar" style="background:#1a56db">CP</div>
         <div>
           <div class="testi-info-name">Carlos P.</div>
-          <div class="testi-info-class">Licencia Clase B Â· Santiago</div>
+          <div class="testi-info-class">Licencia Clase B · Santiago</div>
         </div>
       </div>
     </div>
     <div class="testi-card">
-      <div class="testi-stars">â˜…â˜…â˜…â˜…â˜…</div>
-      <p class="testi-text">"El audiolibro fue un diferencial enorme. Lo escuchaba mientras hacÃ­a otras cosas. En una semana tenÃ­a todo claro y aprobÃ© con nota mÃ¡xima en el municipio."</p>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"El audiolibro fue un diferencial enorme. Lo escuchaba mientras hacía otras cosas. En una semana tenía todo claro y aprobé con nota máxima en el municipio."</p>
       <div class="testi-author">
         <div class="testi-avatar" style="background:#b45309">MG</div>
         <div>
           <div class="testi-info-name">Marcela G.</div>
-          <div class="testi-info-class">Licencia Clase C Â· ConcepciÃ³n</div>
+          <div class="testi-info-class">Licencia Clase C · Concepción</div>
         </div>
       </div>
     </div>
     <div class="testi-card">
-      <div class="testi-stars">â˜…â˜…â˜…â˜…â˜…</div>
-      <p class="testi-text">"Excelente para la profesional A3. Las preguntas son muy especÃ­ficas y bien organizadas. Recomiendo el plan con libro fÃ­sico, el envÃ­o llega rÃ¡pido y complementa perfecto."</p>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Excelente para la profesional A3. Las preguntas son muy específicas y bien organizadas. Recomiendo el plan con libro físico, el envío llega rápido y complementa perfecto."</p>
       <div class="testi-author">
         <div class="testi-avatar" style="background:#065f46">JR</div>
         <div>
           <div class="testi-info-name">Jorge R.</div>
-          <div class="testi-info-class">Licencia Profesional A3 Â· ValparaÃ­so</div>
+          <div class="testi-info-class">Licencia Profesional A3 · Valparaíso</div>
         </div>
       </div>
     </div>
@@ -635,30 +663,30 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
 <!-- BLOG TEASER -->
 <section class="blog-section" id="blog">
   <div class="section-label">Recursos gratuitos</div>
-  <h2 class="section-title">Blog de preparaciÃ³n</h2>
-  <p class="section-sub">ArtÃ­culos con consejos, novedades del reglamento y guÃ­as para aprobar tu examen.</p>
+  <h2 class="section-title">Blog de preparación</h2>
+  <p class="section-sub">Artículos con consejos, novedades del reglamento y guías para aprobar tu examen.</p>
   <div class="blog-grid">
     <a class="blog-card" href="https://obtentulicencia.cl/" target="_blank">
-      <div class="blog-card-img" style="background:#e8f0fe">ðŸ“‹</div>
+      <div class="blog-card-img" style="background:#e8f0fe">📋</div>
       <div class="blog-card-body">
         <div class="blog-card-cat">Consejos</div>
-        <div class="blog-card-title">CÃ³mo aprobar el examen teÃ³rico a la primera en Chile</div>
-        <div class="blog-card-desc">Las 7 estrategias mÃ¡s efectivas segÃºn alumnos que lo lograron al primer intento.</div>
+        <div class="blog-card-title">Cómo aprobar el examen teórico a la primera en Chile</div>
+        <div class="blog-card-desc">Las 7 estrategias más efectivas según alumnos que lo lograron al primer intento.</div>
       </div>
     </a>
     <a class="blog-card" href="https://obtentulicencia.cl/" target="_blank">
-      <div class="blog-card-img" style="background:#fef3e2">ðŸš¦</div>
+      <div class="blog-card-img" style="background:#fef3e2">🚦</div>
       <div class="blog-card-body">
         <div class="blog-card-cat">Reglamento</div>
-        <div class="blog-card-title">SeÃ±ales de trÃ¡nsito que mÃ¡s confunden en el examen 2025</div>
-        <div class="blog-card-desc">Repasa las seÃ±ales mÃ¡s frecuentes en preguntas del examen municipal actualizado.</div>
+        <div class="blog-card-title">Señales de tránsito que más confunden en el examen 2025</div>
+        <div class="blog-card-desc">Repasa las señales más frecuentes en preguntas del examen municipal actualizado.</div>
       </div>
     </a>
     <a class="blog-card" href="https://obtentulicencia.cl/" target="_blank">
-      <div class="blog-card-img" style="background:#e6faf2">ðŸ“…</div>
+      <div class="blog-card-img" style="background:#e6faf2">📅</div>
       <div class="blog-card-body">
-        <div class="blog-card-cat">GuÃ­a prÃ¡ctica</div>
-        <div class="blog-card-title">CuÃ¡ntas preguntas tiene el examen teÃ³rico y cÃ³mo se calcula el puntaje</div>
+        <div class="blog-card-cat">Guía práctica</div>
+        <div class="blog-card-title">Cuántas preguntas tiene el examen teórico y cómo se calcula el puntaje</div>
         <div class="blog-card-desc">Todo lo que debes saber sobre el formato oficial del examen municipal en Chile.</div>
       </div>
     </a>
@@ -668,32 +696,32 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
 <!-- FAQ -->
 <section class="faq-section" id="faq">
   <div class="section-label">Preguntas frecuentes</div>
-  <h2 class="section-title">Â¿Tienes dudas?</h2>
-  <p class="section-sub">Respuestas a las preguntas mÃ¡s comunes de nuestros alumnos antes de empezar.</p>
+  <h2 class="section-title">¿Tienes dudas?</h2>
+  <p class="section-sub">Respuestas a las preguntas más comunes de nuestros alumnos antes de empezar.</p>
 
   <div class="faq-item" onclick="toggleFaq(0)">
-    <div class="faq-header">Â¿CuÃ¡ntas preguntas tiene el examen teÃ³rico municipal en Chile? <span class="faq-chevron" id="chev0">â–¾</span></div>
-    <div class="faq-body" id="faq0"><p>El examen teÃ³rico municipal en Chile consta de 30 preguntas de alternativas. Debes responder correctamente al menos 24 para aprobar (80% de exigencia). Nuestra plataforma incluye +1.500 preguntas reales para que llegues mÃ¡s que preparado el dÃ­a del examen.</p></div>
+    <div class="faq-header">¿Cuántas preguntas tiene el examen teórico municipal en Chile? <span class="faq-chevron" id="chev0">▾</span></div>
+    <div class="faq-body" id="faq0"><p>El examen teórico municipal en Chile consta de 30 preguntas de alternativas. Debes responder correctamente al menos 24 para aprobar (80% de exigencia). Nuestra plataforma incluye +1.500 preguntas reales para que llegues más que preparado el día del examen.</p></div>
   </div>
   <div class="faq-item" onclick="toggleFaq(1)">
-    <div class="faq-header">Â¿Las preguntas estÃ¡n actualizadas al 2025? <span class="faq-chevron" id="chev1">â–¾</span></div>
-    <div class="faq-body" id="faq1"><p>SÃ­. Actualizamos nuestra base de datos permanentemente segÃºn las modificaciones del Reglamento de TrÃ¡nsito y los cuestionarios oficiales CONASET vigentes en 2025. Siempre encontrarÃ¡s las preguntas mÃ¡s recientes del examen municipal.</p></div>
+    <div class="faq-header">¿Las preguntas están actualizadas al 2025? <span class="faq-chevron" id="chev1">▾</span></div>
+    <div class="faq-body" id="faq1"><p>Sí. Actualizamos nuestra base de datos permanentemente según las modificaciones del Reglamento de Tránsito y los cuestionarios oficiales CONASET vigentes en 2025. Siempre encontrarás las preguntas más recientes del examen municipal.</p></div>
   </div>
   <div class="faq-item" onclick="toggleFaq(2)">
-    <div class="faq-header">Â¿Puedo usar la plataforma desde el celular? <span class="faq-chevron" id="chev2">â–¾</span></div>
-    <div class="faq-body" id="faq2"><p>Absolutamente. La plataforma estÃ¡ 100% optimizada para mÃ³vil, tablet y computadora. Puedes estudiar en cualquier dispositivo en cualquier momento, sin necesidad de descargar ninguna aplicaciÃ³n. Solo necesitas conexiÃ³n a internet.</p></div>
+    <div class="faq-header">¿Puedo usar la plataforma desde el celular? <span class="faq-chevron" id="chev2">▾</span></div>
+    <div class="faq-body" id="faq2"><p>Absolutamente. La plataforma está 100% optimizada para móvil, tablet y computadora. Puedes estudiar en cualquier dispositivo en cualquier momento, sin necesidad de descargar ninguna aplicación. Solo necesitas conexión a internet.</p></div>
   </div>
   <div class="faq-item" onclick="toggleFaq(3)">
-    <div class="faq-header">Â¿QuÃ© pasa si no estoy satisfecho? Â¿Hay garantÃ­a? <span class="faq-chevron" id="chev3">â–¾</span></div>
-    <div class="faq-body" id="faq3"><p>Ofrecemos garantÃ­a de devoluciÃ³n de 7 dÃ­as sin preguntas. Si compras cualquier plan premium y no estÃ¡s satisfecho con la plataforma, te devolvemos el 100% de tu dinero. Solo escrÃ­benos por WhatsApp y lo resolvemos de inmediato.</p></div>
+    <div class="faq-header">¿Qué pasa si no estoy satisfecho? ¿Hay garantía? <span class="faq-chevron" id="chev3">▾</span></div>
+    <div class="faq-body" id="faq3"><p>Ofrecemos garantía de devolución de 7 días sin preguntas. Si compras cualquier plan premium y no estás satisfecho con la plataforma, te devolvemos el 100% de tu dinero. Solo escríbenos por WhatsApp y lo resolvemos de inmediato.</p></div>
   </div>
   <div class="faq-item" onclick="toggleFaq(4)">
-    <div class="faq-header">Â¿El libro fÃ­sico llega a todo Chile? <span class="faq-chevron" id="chev4">â–¾</span></div>
-    <div class="faq-body" id="faq4"><p>SÃ­, realizamos despacho a todo Chile a travÃ©s de Correos de Chile y Chilexpress. El tiempo de entrega es de 3 a 7 dÃ­as hÃ¡biles dependiendo de tu regiÃ³n. El costo de envÃ­o estÃ¡ incluido en el precio del plan con libro, sin costos adicionales.</p></div>
+    <div class="faq-header">¿El libro físico llega a todo Chile? <span class="faq-chevron" id="chev4">▾</span></div>
+    <div class="faq-body" id="faq4"><p>Sí, realizamos despacho a todo Chile a través de Correos de Chile y Chilexpress. El tiempo de entrega es de 3 a 7 días hábiles dependiendo de tu región. El costo de envío está incluido en el precio del plan con libro, sin costos adicionales.</p></div>
   </div>
   <div class="faq-item" onclick="toggleFaq(5)">
-    <div class="faq-header">Â¿En quÃ© se diferencia el plan gratuito del premium? <span class="faq-chevron" id="chev5">â–¾</span></div>
-    <div class="faq-body" id="faq5"><p>El plan gratuito te da acceso a 250 preguntas base y exÃ¡menes diarios ilimitados. El plan premium desbloquea mÃ¡s de 1.500 preguntas actualizadas, los Ãºltimos exÃ¡menes municipales reales, explicaciÃ³n detallada de cada error, videos de circuitos y el audiolibro especializado. La diferencia en preparaciÃ³n es significativa.</p></div>
+    <div class="faq-header">¿En qué se diferencia el plan gratuito del premium? <span class="faq-chevron" id="chev5">▾</span></div>
+    <div class="faq-body" id="faq5"><p>El plan gratuito te da acceso a 250 preguntas base y exámenes diarios ilimitados. El plan premium desbloquea más de 1.500 preguntas actualizadas, los últimos exámenes municipales reales, explicación detallada de cada error, videos de circuitos y el audiolibro especializado. La diferencia en preparación es significativa.</p></div>
   </div>
 </section>
 
@@ -702,16 +730,16 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
   <div class="footer-grid">
     <div>
       <div class="footer-brand-name">
-        <div class="footer-brand-icon">ðŸš—</div>
-        ObtÃ©n tu licencia
+        <div class="footer-brand-icon">🚗</div>
+        Obtén tu licencia
       </div>
-      <p class="footer-brand-desc">La plataforma de preparaciÃ³n teÃ³rica para licencia de conducir mÃ¡s completa de Chile. Actualizada al examen municipal 2025. MÃ¡s de 4.800 alumnos aprobados.</p>
+      <p class="footer-brand-desc">La plataforma de preparación teórica para licencia de conducir más completa de Chile. Actualizada al examen municipal 2025. Más de 4.800 alumnos aprobados.</p>
       <div class="footer-socials">
         <a class="footer-social" href="https://web.facebook.com/profile.php?id=61562185082109" target="_blank">f</a>
-        <a class="footer-social" href="https://youtube.com/@obtentulicencia" target="_blank">â–¶</a>
-        <a class="footer-social" href="https://open.spotify.com/show/0ZpjZdo1kz4ittc1jsSbGs" target="_blank">ðŸŽµ</a>
-        <a class="footer-social" href="https://www.instagram.com/obtentulicencia_oficial" target="_blank">â—‰</a>
-        <a class="footer-social" href="https://www.tiktok.com/@obtentulicencia_oficial" target="_blank">â™ª</a>
+        <a class="footer-social" href="https://youtube.com/@obtentulicencia" target="_blank">▶</a>
+        <a class="footer-social" href="https://open.spotify.com/show/0ZpjZdo1kz4ittc1jsSbGs" target="_blank">🎵</a>
+        <a class="footer-social" href="https://www.instagram.com/obtentulicencia_oficial" target="_blank">◉</a>
+        <a class="footer-social" href="https://www.tiktok.com/@obtentulicencia_oficial" target="_blank">♪</a>
       </div>
     </div>
     <div>
@@ -731,9 +759,9 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
     </div>
     <div>
       <div class="footer-col-title">Legal</div>
-      <a class="footer-link" href="#">PolÃ­tica de privacidad</a>
-      <a class="footer-link" href="#">TÃ©rminos y condiciones</a>
-      <a class="footer-link" href="#">PolÃ­tica de devoluciones</a>
+      <a class="footer-link" href="#">Política de privacidad</a>
+      <a class="footer-link" href="#">Términos y condiciones</a>
+      <a class="footer-link" href="#">Política de devoluciones</a>
       <div style="margin-top:20px;font-size:12px;color:rgba(255,255,255,0.3);line-height:2">
         contacto@obtentulicencia.cl<br>
         WhatsApp: +56 9 XXXX XXXX<br>
@@ -742,11 +770,11 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
     </div>
   </div>
   <div class="footer-bottom">
-    <span>Â© 2025 ObtÃ©n tu licencia Â· Todos los derechos reservados</span>
+    <span>© 2025 Obtén tu licencia · Todos los derechos reservados</span>
     <div class="footer-bottom-right">
       <a class="footer-bottom-link" href="#">Privacidad</a>
-      <a class="footer-bottom-link" href="#">TÃ©rminos</a>
-      <span style="color:rgba(255,255,255,0.28)">ðŸ”’ SSL seguro</span>
+      <a class="footer-bottom-link" href="#">Términos</a>
+      <span style="color:rgba(255,255,255,0.28)">🔒 SSL seguro</span>
     </div>
   </div>
 </footer>
@@ -754,7 +782,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
 <!-- WHATSAPP FLOAT -->
 <a class="wa-float" href="https://wa.me/56900000000" target="_blank">
   <div class="wa-pulse"></div>
-  ðŸ’¬ WhatsApp
+  💬 WhatsApp
 </a>
 
 <script>
@@ -787,25 +815,70 @@ function toggleNav() {
   document.querySelector('.nav-links').classList.toggle('open');
 }
 
-// Toggle de planes
-const planData = {
-  '15':    { name: 'Premium 15 dÃ­as',      price: '$7.000',  period: 'acceso completo por 15 dÃ­as',           libro: false, cart: 'https://obtentulicencia.cl/carrito/?add-to-cart=2307' },
-  '30':    { name: 'Premium 30 dÃ­as',      price: '$10.000', period: 'acceso completo por 30 dÃ­as',           libro: false, cart: 'https://obtentulicencia.cl/carrito/?add-to-cart=2607' },
-  'libro': { name: 'Premium 30d + libro',  price: '$18.000', period: 'acceso 30 dÃ­as + libro fÃ­sico a domicilio', libro: true,  cart: 'https://obtentulicencia.cl/tienda/' }
+// ── PRICING INTERACTIVO ──────────────────────────────────────────
+// Links por tipo de licencia y días (reemplaza los # con los IDs reales de WooCommerce)
+const licLinks = {
+  particular: {
+    flex: {
+      1:  'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX', // ID 1 día particular
+      5:  'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX', // ID 5 días particular
+      15: 'https://obtentulicencia.cl/carrito/?add-to-cart=2307'  // ID 15 días particular
+    },
+    prem: {
+      noBook: 'https://obtentulicencia.cl/carrito/?add-to-cart=2607',
+      book:   'https://obtentulicencia.cl/tienda/'
+    }
+  },
+  profesional: {
+    flex: {
+      1:  'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX', // ID 1 día profesional
+      5:  'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX', // ID 5 días profesional
+      15: 'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX'  // ID 15 días profesional
+    },
+    prem: {
+      noBook: 'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX',
+      book:   'https://obtentulicencia.cl/tienda/'
+    }
+  }
 };
 
-function setPlan(plan) {
-  document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + plan).classList.add('active');
-  const d = planData[plan];
-  document.getElementById('plan-name-feat').textContent = d.name;
-  document.getElementById('plan-price-feat').textContent = d.price;
-  document.getElementById('plan-period-feat').textContent = d.period;
-  document.getElementById('plan-libro-feat').style.display = d.libro ? 'flex' : 'none';
-  document.getElementById('plan-cta-feat').href = d.cart;
+const flexPrices  = { 1: '$2.900', 5: '$4.900', 15: '$6.900' };
+let _licType = 'particular', _days = 15, _hasBook = false;
+
+function selectLicType(type, btn) {
+  _licType = type;
+  document.querySelectorAll('.lic-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  _updateFlex(); _updatePrem();
 }
 
-// FAQ acordeÃ³n
+function selectDays(days, btn) {
+  _days = days;
+  document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  _updateFlex();
+}
+
+function selectBook(hasBook, btn) {
+  _hasBook = hasBook;
+  document.querySelectorAll('.book-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('prem-book-feat').style.display = hasBook ? 'flex' : 'none';
+  _updatePrem();
+}
+
+function _updateFlex() {
+  document.getElementById('flex-price').textContent  = flexPrices[_days];
+  document.getElementById('flex-period').textContent = 'acceso completo por ' + _days + (_days === 1 ? ' día' : ' días');
+  document.getElementById('flex-cta').href = licLinks[_licType].flex[_days];
+}
+
+function _updatePrem() {
+  document.getElementById('prem-price').textContent = _hasBook ? '$23.900' : '$14.900';
+  document.getElementById('prem-cta').href = licLinks[_licType].prem[_hasBook ? 'book' : 'noBook'];
+}
+
+// FAQ acordeón
 function toggleFaq(i) {
   const body = document.getElementById('faq' + i);
   const chev = document.getElementById('chev' + i);

@@ -149,6 +149,24 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
 .plan-btn-ghost:hover{background:rgba(255,255,255,0.16)}
 .plan-guarantee{text-align:center;margin-top:24px;font-size:12px;color:rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;gap:6px}
 
+/* SELECTOR DE TIPO DE LICENCIA */
+.lic-tabs{display:flex;gap:10px;margin-bottom:36px;flex-wrap:wrap}
+.lic-tab{padding:11px 28px;border-radius:99px;font-size:14px;font-weight:700;cursor:pointer;border:2px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.55);transition:all .25s;display:flex;align-items:center;gap:8px}
+.lic-tab.active{background:#f5a623;color:#fff;border-color:#f5a623;box-shadow:0 4px 16px rgba(245,166,35,0.35)}
+.lic-tab:hover:not(.active){border-color:rgba(255,255,255,0.45);color:#fff}
+
+/* SELECTOR DE DÍAS (card flexible) */
+.day-selector{display:flex;gap:6px;margin:4px 0 16px}
+.day-btn{flex:1;padding:9px 4px;border-radius:99px;font-size:12px;font-weight:800;cursor:pointer;border:1.5px solid rgba(26,43,74,0.15);background:#f0f4f8;color:#5a6a85;transition:all .2s}
+.day-btn.active{background:#f5a623;color:#fff;border-color:#f5a623;box-shadow:0 2px 8px rgba(245,166,35,0.3)}
+.day-btn:hover:not(.active){border-color:#f5a623;color:#f5a623}
+
+/* TOGGLE LIBRO (card premium) */
+.book-toggle{display:flex;gap:6px;margin:4px 0 16px}
+.book-btn{flex:1;padding:9px 4px;border-radius:99px;font-size:12px;font-weight:800;cursor:pointer;border:1.5px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.55);transition:all .2s}
+.book-btn.active{background:rgba(255,255,255,0.14);color:#fff;border-color:rgba(255,255,255,0.45)}
+.book-btn:hover:not(.active){border-color:rgba(255,255,255,0.35);color:#fff}
+
 /* TESTIMONIALS */
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:768px){.testi-grid{grid-template-columns:1fr}}
@@ -542,14 +560,15 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
   <h2 class="section-title">Elige tu plan de estudio</h2>
   <p class="section-sub">Empieza gratis. Sube a premium cuando quieras. Sin contratos ni letras chicas.</p>
 
-  <div class="pricing-toggle">
-    <button class="pricing-tab active" id="tab-15" onclick="setPlan('15')">15 días</button>
-    <button class="pricing-tab" id="tab-30" onclick="setPlan('30')">30 días</button>
-    <button class="pricing-tab" id="tab-libro" onclick="setPlan('libro')">30 días + libro</button>
+  <!-- Selector tipo de licencia -->
+  <div class="lic-tabs">
+    <button class="lic-tab active" onclick="selectLicType('particular', this)">🚗 Clases B · C · D · E · F</button>
+    <button class="lic-tab" onclick="selectLicType('profesional', this)">🚛 Licencias Profesionales</button>
   </div>
 
   <div class="pricing-grid">
-    <!-- FREE -->
+
+    <!-- CARD 1: FREE -->
     <div class="plan-card">
       <div class="plan-name">Acceso inmediato</div>
       <div class="plan-price">$0</div>
@@ -563,35 +582,44 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0f4f8;c
       <a class="plan-btn plan-btn-ghost" href="https://obtentulicencia.cl/test-clase-b/" target="_blank">Empezar gratis</a>
     </div>
 
-    <!-- FEATURED -->
+    <!-- CARD 2: FLEXIBLE (selector de días) -->
     <div class="plan-card featured">
       <div class="plan-featured-badge">⭐ Más popular</div>
-      <div class="plan-name" id="plan-name-feat">Premium 15 días</div>
-      <div class="plan-price" id="plan-price-feat">$7.000</div>
-      <div class="plan-period" id="plan-period-feat">acceso completo por 15 días</div>
+      <div class="plan-name">Plan Flexible</div>
+      <div class="day-selector">
+        <button class="day-btn" onclick="selectDays(1, this)">1 día</button>
+        <button class="day-btn" onclick="selectDays(5, this)">5 días</button>
+        <button class="day-btn active" onclick="selectDays(15, this)">15 días</button>
+      </div>
+      <div class="plan-price" id="flex-price">$6.900</div>
+      <div class="plan-period" id="flex-period">acceso completo por 15 días</div>
       <div class="plan-divider"></div>
       <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>+1.500 preguntas actualizadas</div>
       <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Últimos exámenes municipales reales</div>
       <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Explicación detallada de cada error</div>
       <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Videos de circuitos municipales</div>
       <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Audiolibro especializado</div>
-      <div class="plan-feature" style="color:#374151"><span class="plan-check">✓</span>Pruebas por categorías</div>
-      <div class="plan-feature" id="plan-libro-feat" style="color:#374151;display:none"><span class="plan-check">✓</span>📚 Libro físico a domicilio (todo Chile)</div>
-      <a class="plan-btn plan-btn-primary" id="plan-cta-feat" href="https://obtentulicencia.cl/carrito/?add-to-cart=2307" target="_blank">Comprar ahora →</a>
+      <a class="plan-btn plan-btn-primary" id="flex-cta" href="https://obtentulicencia.cl/carrito/?add-to-cart=2307" target="_blank">Comprar ahora →</a>
     </div>
 
-    <!-- INTENSIVO -->
+    <!-- CARD 3: PREMIUM 30 DÍAS (toggle libro) -->
     <div class="plan-card">
-      <div class="plan-name">Plan intensivo</div>
-      <div class="plan-price">$10.000</div>
+      <div class="plan-name">Plan Premium</div>
+      <div class="book-toggle">
+        <button class="book-btn active" onclick="selectBook(false, this)">Sin libro</button>
+        <button class="book-btn" onclick="selectBook(true, this)">Con libro 📚</button>
+      </div>
+      <div class="plan-price" id="prem-price">$14.900</div>
       <div class="plan-period">acceso completo por 30 días</div>
       <div class="plan-divider"></div>
-      <div class="plan-feature"><span class="plan-check">✓</span>Todo lo del plan popular</div>
+      <div class="plan-feature"><span class="plan-check">✓</span>Todo lo del plan flexible</div>
       <div class="plan-feature"><span class="plan-check">✓</span>Pruebas por categorías avanzadas</div>
       <div class="plan-feature"><span class="plan-check">✓</span>Modo simulacro oficial</div>
       <div class="plan-feature"><span class="plan-check">✓</span>Soporte prioritario por WhatsApp</div>
-      <a class="plan-btn plan-btn-ghost" href="https://obtentulicencia.cl/carrito/?add-to-cart=2607" target="_blank">Comprar →</a>
+      <div class="plan-feature" id="prem-book-feat" style="display:none"><span class="plan-check">✓</span>📚 Libro físico a domicilio (todo Chile)</div>
+      <a class="plan-btn plan-btn-ghost" id="prem-cta" href="https://obtentulicencia.cl/carrito/?add-to-cart=2607" target="_blank">Comprar →</a>
     </div>
+
   </div>
   <div class="plan-guarantee">🔒 Garantía de devolución de 7 días · Sin preguntas · Por WhatsApp</div>
 </section>
@@ -793,22 +821,67 @@ function toggleNav() {
   document.querySelector('.nav-links').classList.toggle('open');
 }
 
-// Toggle de planes
-const planData = {
-  '15':    { name: 'Premium 15 días',      price: '$7.000',  period: 'acceso completo por 15 días',           libro: false, cart: 'https://obtentulicencia.cl/carrito/?add-to-cart=2307' },
-  '30':    { name: 'Premium 30 días',      price: '$10.000', period: 'acceso completo por 30 días',           libro: false, cart: 'https://obtentulicencia.cl/carrito/?add-to-cart=2607' },
-  'libro': { name: 'Premium 30d + libro',  price: '$18.000', period: 'acceso 30 días + libro físico a domicilio', libro: true,  cart: 'https://obtentulicencia.cl/tienda/' }
+// ── PRICING INTERACTIVO ──────────────────────────────────────────
+// Links por tipo de licencia y días (reemplaza los # con los IDs reales de WooCommerce)
+const licLinks = {
+  particular: {
+    flex: {
+      1:  'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX', // ID 1 día particular
+      5:  'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX', // ID 5 días particular
+      15: 'https://obtentulicencia.cl/carrito/?add-to-cart=2307'  // ID 15 días particular
+    },
+    prem: {
+      noBook: 'https://obtentulicencia.cl/carrito/?add-to-cart=2607',
+      book:   'https://obtentulicencia.cl/tienda/'
+    }
+  },
+  profesional: {
+    flex: {
+      1:  'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX', // ID 1 día profesional
+      5:  'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX', // ID 5 días profesional
+      15: 'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX'  // ID 15 días profesional
+    },
+    prem: {
+      noBook: 'https://obtentulicencia.cl/carrito/?add-to-cart=XXXX',
+      book:   'https://obtentulicencia.cl/tienda/'
+    }
+  }
 };
 
-function setPlan(plan) {
-  document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab-' + plan).classList.add('active');
-  const d = planData[plan];
-  document.getElementById('plan-name-feat').textContent = d.name;
-  document.getElementById('plan-price-feat').textContent = d.price;
-  document.getElementById('plan-period-feat').textContent = d.period;
-  document.getElementById('plan-libro-feat').style.display = d.libro ? 'flex' : 'none';
-  document.getElementById('plan-cta-feat').href = d.cart;
+const flexPrices  = { 1: '$2.900', 5: '$4.900', 15: '$6.900' };
+let _licType = 'particular', _days = 15, _hasBook = false;
+
+function selectLicType(type, btn) {
+  _licType = type;
+  document.querySelectorAll('.lic-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  _updateFlex(); _updatePrem();
+}
+
+function selectDays(days, btn) {
+  _days = days;
+  document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  _updateFlex();
+}
+
+function selectBook(hasBook, btn) {
+  _hasBook = hasBook;
+  document.querySelectorAll('.book-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('prem-book-feat').style.display = hasBook ? 'flex' : 'none';
+  _updatePrem();
+}
+
+function _updateFlex() {
+  document.getElementById('flex-price').textContent  = flexPrices[_days];
+  document.getElementById('flex-period').textContent = 'acceso completo por ' + _days + (_days === 1 ? ' día' : ' días');
+  document.getElementById('flex-cta').href = licLinks[_licType].flex[_days];
+}
+
+function _updatePrem() {
+  document.getElementById('prem-price').textContent = _hasBook ? '$23.900' : '$14.900';
+  document.getElementById('prem-cta').href = licLinks[_licType].prem[_hasBook ? 'book' : 'noBook'];
 }
 
 // FAQ acordeón
